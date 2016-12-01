@@ -14,12 +14,28 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) =>  {
   console.log('New user connected');
 
-  socket.on('disconnect', () => {
-    console.log('User was disconnected');
+  // socket.emit('newEmail', {
+  //   from: 'mike@example.com',
+  //   text: 'Hey. What is going on?',
+  //   createAt: 123
+  // });
+  //
+  // socket.on('createEmail', (newEmail) => {
+  //   console.log('createEmail', newEmail);
+  // });
+  //
+  // socket.on('disconnect', function () {
+  //   console.log('User was disconnected');
+  // });
+
+  socket.emit('newMessage', {
+    from: 'andrew@example.com',
+    text: 'Does this seem too easy?',
+    createdAt: 456
   });
 });
 
 
-server.listen(port, () => {
+server.listen(port, function () {
   console.log(`Server is up on port ${port}`);
 });
