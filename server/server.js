@@ -33,6 +33,10 @@ io.on('connection', (socket) =>  {
     text: 'Does this seem too easy?',
     createdAt: 456
   });
+
+  socket.on('createMessage', (newMessage) => {
+    console.log('newMessage', newMessage);
+  });
 });
 
 
