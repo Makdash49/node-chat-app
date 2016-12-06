@@ -36,42 +36,32 @@ describe('Users', () => {
   });
 
   it('should remove a user', () => {
-    var resUser = users.removeUser('1')
+    var userId = '1';
+    var user = users.removeUser(userId);
 
-    var removedUser = {
-      id: '1',
-      name: 'Mike',
-      room: 'Node Course'
-    }
-
-    var remainingUsers = [{
-      id: '2',
-      name: 'Jen',
-      room: 'React Course'
-    }, {
-      id: '3',
-      name: 'Julie',
-      room: 'Node Course'
-    }]
-
-    expect(resUser).toEqual(removedUser);
-    expect(users.users).toEqual(remainingUsers);
+    expect(user.id).toBe(userId);
+    expect(users.users.length).toBe(2);
   });
 
   it('should not remove user', () => {
-    users.removeUser('5');
+    var userId = '99';
+    var user = users.removeUser(userId);
+
+    expect(user).toNotExist();
     expect(users.users.length).toBe(3);
-    // user id that does not exist.  Array does not change.
   });
 
   it('should find user', () => {
-    user = users.getUser('1');
-    expect(user).toEqual(users.users[0])
+    var userId = '2';
+    var user = users.getUser(userId);
+
+    expect(user.id).toBe(userId);
   });
 
   it('should not find user', () => {
-    user = users.getUser('5');
-    console.log('USER', user);
+    var userId = '99';
+    var user = users.getUser(userId);
+
     expect(user).toNotExist();
   });
 
