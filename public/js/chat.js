@@ -33,14 +33,16 @@ socket.on('disconnect', function () {
   console.log('Disconnected from server');
 });
 
-socket.on('updateUserList', function (users) {
+socket.on('updateUserList', function (users, room) {
   var ol = jQuery('<ol></ol>');
 
   users.forEach(function(user) {
     ol.append(jQuery('<li></li>').text(user));
   });
+  console.log('ROOM', room);
 
   jQuery('#users').html(ol);
+  jQuery('#room').html(room);
 });
 
 socket.on('newMessage', function (message) {
